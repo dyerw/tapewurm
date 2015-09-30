@@ -1,9 +1,10 @@
 import React from 'react';
-import { TrackEditor } from './trackeditor.jsx'
+import { TrackEditor } from './trackeditor.jsx';
+import { makeCreateMixCall } from './MixService.js';
 
 class MixMaker extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
@@ -16,6 +17,7 @@ class MixMaker extends React.Component {
     // Manually bind instance functions
     this.trackUpdated = this.trackUpdated.bind(this);
     this.addTrack = this.addTrack.bind(this);
+    this.createMix = this.createMix.bind(this);
   }
 
   componentDidMount() {
@@ -89,6 +91,8 @@ class MixMaker extends React.Component {
    * to the newly created mix.
    */
   createMix() {
+    makeCreateMixCall(this.state.name, this.state.image_url, this.state.tracks,
+                      this.handleSuccessfulCreate, this.handleErrorCreate);
   }
 
   /*
@@ -101,6 +105,15 @@ class MixMaker extends React.Component {
     newTrack[field] = value;
     newTracks[trackOrder - 1] = newTrack;
     this.setState({tracks: newTracks});
+  }
+
+  // Service Call Callbacks
+  handleSuccessfulCreate() {
+
+  }
+
+  handleErrorCreate() {
+
   }
 }
 

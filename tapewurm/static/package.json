@@ -9,6 +9,7 @@
   "author": "Liam Dyer",
   "license": "ISC",
   "dependencies": {
+    "qwest": "^2.1.0",
     "react": "^0.13.3"
   },
   "devDependencies": {
