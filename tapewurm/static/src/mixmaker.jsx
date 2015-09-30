@@ -9,19 +9,31 @@ class MixMaker extends React.Component {
     this.state = {
       name: '',
       // Begins with an empty track editor
-      tracks: [{order: 1, musicbrainz_id: null,
-                title: "", note: ""}],
+      tracks: [],
       image_url: ''
     };
+
+    // Manually bind instance functions
+    this.trackUpdated = this.trackUpdated.bind(this);
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  componentDidMount() {
+    // For some reason sticking this info in the state field
+    // isn't working
+    // FIXME: Do this in constructor?
+    this.addTrack();
   }
 
   render() {
     console.log("rendering");
+    console.log(this.state);
 
     // Create an array of all the track editors
     let trackEditors = [];
-    for (let track of this.state.tracks) {
-      trackEditors.push(<TrackEditor key={track.order} order={track.order} title={track.title}
+    for (var i = 0; i < this.state.tracks.length; i++) {
+      let track = this.state.tracks[i];
+      trackEditors.push(<TrackEditor key={i} order={i + 1} title={track.title}
                                note={track.note} updateFunction={this.trackUpdated} />);
     }
 
@@ -61,6 +73,15 @@ class MixMaker extends React.Component {
    * Adds an empty new track editor at the bottom of the mix.
    */
   addTrack() {
+    var newTracks = this.state.tracks.slice();
+    newTracks.push(
+      {musicbrainz_id: null,
+       title: "",
+       note: ""}
+    );
+    console.log(newTracks);
+
+    this.setState({tracks: newTracks});
   }
 
   /*
@@ -73,7 +94,13 @@ class MixMaker extends React.Component {
   /*
    * Fired off whenever the user edits a track.
    */
-  trackUpdated(trackOrder) {
+  trackUpdated(trackOrder, field, value) {
+    // FIXME: Do this immutably
+    let newTracks = this.state.tracks.slice();
+    let newTrack = newTracks[trackOrder - 1];
+    newTrack[field] = value;
+    newTracks[trackOrder - 1] = newTrack;
+    this.setState({tracks: newTracks});
   }
 }
 
