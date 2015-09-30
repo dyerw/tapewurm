@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from tapewurm.tapewurm_api.views import get_mix
+from tapewurm.tapewurm_api.views import MixView 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^mix', get_mix)
+    url(r'^mix', MixView.as_view())
 ]
 
