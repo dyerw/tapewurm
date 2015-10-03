@@ -8,12 +8,14 @@ class Mix(models.Model):
     # The character string used to look up this mix
     url_identifier = models.CharField(max_length=50)
 
+    def __str__(self):
+        return "<Mix name=%s>" % self.name
+
 
 class Track(models.Model):
     mix = models.ForeignKey(Mix)
     # MBID is exactly 36 chars long
     # TODO: Somehow get a minimum length
-    musicbrainz_id = models.CharField(max_length=36) 
+    musicbrainz_id = models.CharField(max_length=36)
     order = models.PositiveIntegerField()
     note = models.TextField()
-
