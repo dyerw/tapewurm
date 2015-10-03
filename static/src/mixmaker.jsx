@@ -28,9 +28,6 @@ class MixMaker extends React.Component {
   }
 
   render() {
-    console.log("rendering");
-    console.log(this.state);
-
     // Create an array of all the track editors
     let trackEditors = [];
     for (var i = 0; i < this.state.tracks.length; i++) {
