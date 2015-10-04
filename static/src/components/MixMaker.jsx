@@ -1,6 +1,6 @@
 import React from 'react';
-import { TrackEditor } from './trackeditor.jsx';
-import { makeCreateMixCall } from './MixService.js';
+import { TrackEditor } from './TrackEditor.jsx';
+import { makeCreateMixCall } from '../services/MixService.js';
 
 class MixMaker extends React.Component {
 

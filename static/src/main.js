@@ -1,1 +1,1 @@
-import MixMaker from './mixmaker.jsx';
+import MixMaker from './components/MixMaker.jsx';

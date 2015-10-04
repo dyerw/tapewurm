@@ -1,5 +1,5 @@
 import qwest from 'qwest';
-import { config } from './config.js';
+import { config } from '../config.js';
 
 qwest.base = config.base_url
 
@@ -14,9 +14,11 @@ export function makeCreateMixCall(name, image_url, tracks, success, error) {
   for (let i = 0; i < data.tracks.length; i++) {
     data.tracks[i]['order'] = i + 1;
   }
-  qwest.post(config.mix_enpoint, data, {dataType: 'json'}).then((xhr, response) => {
+  qwest.post(config.mix_enpoint, data, {dataType: 'json'})
+  .then((xhr, response) => {
     success();
-  }).catch((xhr, response, e) => {
+  })
+  .catch((xhr, response, e) => {
     error();
   });
 }
