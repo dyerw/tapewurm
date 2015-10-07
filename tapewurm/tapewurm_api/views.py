@@ -26,12 +26,10 @@ class MixView(APIView):
 
     def post(self, request):
         data = json.loads(request.body)
-        print data
 
         mix = Mix()
         mix.name = data['name']
         mix.picture_url = data['image_url']
-        print datetime.now()
         mix.date_submitted = datetime.now()
         mix.url_identifier = uuid.uuid4().hex[:8]
         mix.save()
