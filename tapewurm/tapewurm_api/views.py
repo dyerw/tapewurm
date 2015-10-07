@@ -41,7 +41,7 @@ class MixView(APIView):
             track_object.note = track['note']
             track_object.mix = mix
             track_object.order = track['order']
-            track_object.musicbrainz_id = 'abc'#track['musicbrainz_id']
+            track_object.track_id = track['track_id']
             track_object.save()
 
         return Response({'url': mix.url_identifier})

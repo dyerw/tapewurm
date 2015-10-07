@@ -10,4 +10,4 @@ class MixSerializer(serializers.ModelSerializer):
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ('musicbrainz_id', 'mix', 'order', 'note')
+        fields = ('track_id', 'mix', 'order', 'note')

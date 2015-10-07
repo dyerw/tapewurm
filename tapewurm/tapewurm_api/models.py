@@ -14,8 +14,6 @@ class Mix(models.Model):
 
 class Track(models.Model):
     mix = models.ForeignKey(Mix)
-    # MBID is exactly 36 chars long
-    # TODO: Somehow get a minimum length
-    musicbrainz_id = models.CharField(max_length=36)
+    track_id = models.CharField(max_length=100)
     order = models.PositiveIntegerField()
     note = models.TextField()
